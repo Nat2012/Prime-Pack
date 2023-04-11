@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Pack v2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    function prime(x){
+    for (let i = 2; i < (x/2)+1; i++) {
+        if (x%i == 0) {
+            return false;
+        }  
+    }
+   return true;
+    }
+        function findPrime(start,end) {
+    let result = []
+    for (let i = start  ; i <= end ; i++) {
+      if (prime(i)) {
+        result.push(i)
+      }
+       }
+       return result;
+        
+    }
+
+    function listPrime() {
+        let first = parseInt(document.getElementById("Firstnumber").value);
+        let second = parseInt(document.getElementById("Secondnumber").value);
+        let Ans = first < second ? findPrime(first,second) : "Sorry,there's a problem somewhere.";
+        console.log(second);
+        let result  = ""
+        for (let index = 0; index < Ans.length; index++) {
+            result += "<div class='prime'>" + Ans[index] + "</div>";
+        }
+        document.getElementById("primegrid").innerHTML = result;
+    }
+    function callPrime() {
+        let number = document.getElementById("number").value;
+        let Answer = prime(number) ? number + " is a prime number" : number + " is not a prime number";
+        document.getElementById("answer").value = Answer;
+    }
+    </script>
+    <link rel="stylesheet" href="Primev2.css">
+</head>
+<body>
+    <header>Nathan's Prime Pack v2.0</header>
+    <div id="Question">If you don't know whether a number is a Prime number or not try this today.</div>
+    <div class="Prime Checker">
+        <input type="text" name="no." id="number" placeholder="Type number here">
+        <button id="Checker" onclick="callPrime()">Click to Check</button>
+        <input type="text" name="ans" id="answer" placeholder="answer">
+    </div>
+    <div id="sent"><p>Do you know the Prime numbers between 2 certain numbers?</p></div>
+    <p>If you dont try this <strong>Prime Lister</strong> now.</p>
+    <p>Please put 2 numbers inside the boxes respectively</p>
+    <div class="PrimeLister">
+        <input type="text" name="first no." id="Firstnumber" placeholder="Type First number here">
+        <button id="Printer" onclick="listPrime()">Click To List</button>
+        <input type="text" name="second no." id="Secondnumber" placeholder="Type Second number here">
+    </div>
+    <p type="text" name="answer" id="Answer" placeholder="Answer"></p>
+    <div class="container">
+        <div id="primegrid">
+        
+        </div>
+    </div>
+    
+    <footer class="Foot">Thanks for using <strong>Prime Pack</strong>.</footer>
+</body>
+</html>
